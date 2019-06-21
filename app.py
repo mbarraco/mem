@@ -28,12 +28,12 @@ def anova_03():
 
 
 @app.route('/practica_4_II_2', methods=['GET'])
-def anova_03():
+def practica_4_II_2():
     return render_template('practica_4_II_2.html')
 
 
 @app.route('/practica_4_II_3', methods=['GET'])
-def anova_03():
+def practica_4_II_3():
     return render_template('practica_4_II_3.html')
 
 
