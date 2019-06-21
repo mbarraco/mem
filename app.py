@@ -27,6 +27,16 @@ def anova_03():
     return render_template('anova_03.html')
 
 
+@app.route('/practica_4_II_2', methods=['GET'])
+def anova_03():
+    return render_template('practica_4_II_2.html')
+
+
+@app.route('/practica_4_II_3', methods=['GET'])
+def anova_03():
+    return render_template('practica_4_II_3.html')
+
+
 @app.route('/tp-4-5', methods=['GET', 'POST'])
 def tp_4_5():
     return render_template('tp_4.5.html')
