@@ -57,6 +57,11 @@ def practica_4_II_7():
     return render_template('practica_4_II_7.html')
 
 
+@app.route('/practica_4_II_8', methods=['GET'])
+def practica_4_II_8():
+    return render_template('practica_4_II_8.html')
+
+
 @app.route('/diagnostico', methods=['GET'])
 def diagnostico():
     return render_template('diagnostico.html')
