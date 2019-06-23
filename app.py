@@ -57,5 +57,11 @@ def tp_4_5():
     return render_template('tp_4.5.html')
 
 
+@app.route('/error', methods=['GET'])
+def error():
+    return render_template('landing.html')
+
+
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5999, debug=True)
