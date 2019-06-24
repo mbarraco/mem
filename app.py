@@ -72,6 +72,11 @@ def tp_4_5():
     return render_template('tp_4.5.html')
 
 
+@app.route('/temas_teoricos_parcial2', methods=['GET', 'POST'])
+def temas_teoricos_parcial2():
+    return render_template('temas_teoricos_parcial2.html')
+
+
 @app.route('/error', methods=['GET'])
 def error():
     return render_template('landing.html')
