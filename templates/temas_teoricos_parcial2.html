@@ -10,7 +10,7 @@
 
 <meta name="author" content="Mariano Barraco marianobarraco@gmail.com" />
 
-<meta name="date" content="2019-06-24" />
+<meta name="date" content="2019-06-26" />
 
 <title>Temas teóricos 2° parcial</title>
 
@@ -1453,15 +1453,17 @@ $(document).ready(function () {
     <div id="text-table-of-contents">
       <ul>
       <li><a href="#section">1</a></li>
-      <li><a href="#section-1">2</a></li>
-      <li><a href="#section-2">3</a></li>
-      <li><a href="#section-3">4</a></li>
-      <li><a href="#section-4">5</a></li>
-      <li><a href="#section-5">6</a></li>
-      <li><a href="#section-6">7</a></li>
-      <li><a href="#section-7">8</a></li>
+      <li><a href="#probar-el-teorema-a.5-consistencia-del-emc.">2 Probar el Teorema A.5 (Consistencia del EMC).</a><ul>
+      <li><a href="#supuestos-s1-asintoticos">Supuestos S1 asintóticos</a></li>
+      </ul></li>
+      <li><a href="#section-1">3</a></li>
+      <li><a href="#section-2">4</a></li>
+      <li><a href="#section-3">5</a></li>
+      <li><a href="#section-4">6</a></li>
+      <li><a href="#section-5">7</a></li>
+      <li><a href="#section-6">8</a></li>
       <li><a href="#residuos">9 Residuos</a></li>
-      <li><a href="#section-8">10</a></li>
+      <li><a href="#section-7">10</a></li>
       </ul>
     </div>
 </div>
@@ -1470,25 +1472,64 @@ $(document).ready(function () {
 <div id="section" class="section level1">
 <h1>1</h1>
 </div>
+<div id="probar-el-teorema-a.5-consistencia-del-emc." class="section level1">
+<h1>2 Probar el Teorema A.5 (Consistencia del EMC).</h1>
+<div id="supuestos-s1-asintoticos" class="section level2">
+<h2>Supuestos S1 asintóticos</h2>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(E[y^2] &lt; \infty\)</span></li>
+<li><span class="math inline">\(E[\vert\vert x\vert\vert] &lt; \infty\)</span></li>
+<li><span class="math inline">\(Q_{xx} = [E[xx']]^{-1}E[xy]\)</span> es definida positiva</li>
+<li>Los vectores <span class="math inline">\((y_i,\mathbf{x}_i)\)</span>, <span class="math inline">\(i=1,2,...,n\)</span> son <span class="math inline">\(iid\)</span></li>
+</ol>
+<h3>
+Hipótesis
+</h3>
+<p>Bajo los supuestos S1 asintóticos, consideremos la sucesión <span class="math inline">\((\hat\beta_n)_n\)</span> con <span class="math inline">\(\hat\beta_n\)</span> el estimador de mínimos cuadrados para la regresión lineal de <span class="math inline">\(y\)</span> sobre <span class="math inline">\(\mathbf{x}\)</span> basada en <span class="math inline">\(\{(y_i, \mathbf{x}_i)\}_n\)</span> , con <span class="math inline">\(i=1,...,n\)</span> cumple que:</p>
+<p><span class="math display">\[\left(\hat\beta_n\right)_n \underset{n\to\infty}{\overset{p}{\longrightarrow}} b \]</span> con <span class="math inline">\(\beta = \left[E[\mathbf{x}\mathbf{x}']\right]^{-1}E[\mathbf{x}y]\)</span></p>
+<h3>
+Demostración
+</h3>
+<ol style="list-style-type: decimal">
+<li>Consideremos el estimador de mínimos cuadrados: <span class="math display">\[\hat\beta = \left[\frac{1}{n}\sum_{i=1}^n\mathbf{x}_i\mathbf{x}_i'\right]^{-1}\left[\frac{1}{n}\sum_{i=1}^n\mathbf{x}_iy_i\right] = \hat Q_{xx}^{-1} \hat Q_{xy}\]</span> que es función de los momentos muestrales:</li>
+</ol>
+<ul>
+<li><span class="math inline">\(Q_{xx} = \left[\frac{1}{n}\sum_{i=1}^n\mathbf{x}_i\mathbf{x}_i'\right]\)</span></li>
+<li><span class="math inline">\(Q_{xy} = \left[\frac{1}{n}\sum_{i=1}^n\mathbf{x}_iy_i\right]\)</span></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Como los vectores <span class="math inline">\((y_i, \mathbf{x}_i)\)</span> son <span class="math inline">\(iid\)</span>, entonces las funciones cantidades <span class="math inline">\(\mathbf{x}_i\mathbf{x}_i'\)</span> y <span class="math inline">\(\mathbf{x}_iy_i\)</span> son independientes y, bajo los supuestos S1 asintóticos tienen esperanzas finitas. Luego tenemos:</li>
+</ol>
+<ul>
+<li><span class="math inline">\(Q_{xx} = \frac{1}{n}\sum_{i=1}^n\mathbf{x}_i\mathbf{x}_i'\ \underset{n\to\infty}{\overset{p}{\longrightarrow}} E[xx'] = Q_{xx}\)</span></li>
+<li><span class="math inline">\(Q_{xy} = \frac{1}{n}\sum_{i=1}^n\mathbf{x}_iy_i \underset{n\to\infty}{\overset{p}{\longrightarrow}} E[xy]= Q_{xy}\)</span></li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Finalmente, podemos considerar que <span class="math inline">\(\hat\beta = g(\hat Q_{xx}, \hat Q_{xy})\)</span> donde <span class="math inline">\(g(A,b)=A^{-1}b\)</span> (con <span class="math inline">\(A\)</span> y <span class="math inline">\(b\)</span> una matrix y un vector de dimensiones adecuadas) es contínua si existe <span class="math inline">\(A^{-1}\)</span>. En S1 asintóticos pedimos que <span class="math inline">\(Q_{xx}\)</span> fuera definida positiva, entonces queda garantizada la existencia de su inversa, luego <span class="math inline">\(g(A,b)\)</span> es contínua en <span class="math inline">\(A=Q_{xx}\)</span>.</li>
+</ol>
+<p>Por el punto 2 y 3 el Teorema de funciones contínuas:</p>
+<p><span class="math display">\[ \hat Q_{xx}^{-1} \hat Q_{xy} \underset{n \to\infty}{\overset{p}{\longrightarrow}} = Q_{xx}^{-1}Q_{xy}\beta\]</span></p>
+</div>
+</div>
 <div id="section-1" class="section level1">
-<h1>2</h1>
+<h1>3</h1>
+<p>Probar el Teorema A.7 (Normalidad asintótica del EMC)</p>
 </div>
 <div id="section-2" class="section level1">
-<h1>3</h1>
+<h1>4</h1>
+<p>Probar el Teorema A.9 (Tests e IC de nivel asintótico para combinaciones lineales de los <span class="math inline">\(\beta\)</span>)</p>
 </div>
 <div id="section-3" class="section level1">
-<h1>4</h1>
-</div>
-<div id="section-4" class="section level1">
 <h1>5</h1>
 </div>
-<div id="section-5" class="section level1">
+<div id="section-4" class="section level1">
 <h1>6</h1>
+<p>Intervalos de confianza de Bonferroni para ANOVA 1 factor. Describirlos y justifcar por qué tienen nivel simultáneo.</p>
 </div>
-<div id="section-6" class="section level1">
+<div id="section-5" class="section level1">
 <h1>7</h1>
 </div>
-<div id="section-7" class="section level1">
+<div id="section-6" class="section level1">
 <h1>8</h1>
 </div>
 <div id="residuos" class="section level1">
@@ -1525,7 +1566,7 @@ $(document).ready(function () {
    \\
 \end{align}\]</span></p>
 </div>
-<div id="section-8" class="section level1">
+<div id="section-7" class="section level1">
 <h1>10</h1>
 </div>
 </div>
@@ -1535,7 +1576,7 @@ $(document).ready(function () {
 
 <div id="postamble" data-toggle="wy-nav-shift" class="status">
 <p class="author"><span class="glyphicon glyphicon-user"></span> Mariano Barraco <a href="mailto:marianobarraco@gmail.com" class="email">marianobarraco@gmail.com</a></p>
-<p class="date"><span class="glyphicon glyphicon-calendar"></span> 2019-06-24</p>
+<p class="date"><span class="glyphicon glyphicon-calendar"></span> 2019-06-26</p>
 </div>
 
 
