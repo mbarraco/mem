@@ -1542,10 +1542,16 @@ $(document).ready(function () {
 <h4>
 Calcular medidas para todos los subconjuntos de predictores
 </h4>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">reg_subsets =<span class="st"> </span><span class="kw">regsubsets</span>(<span class="dt">data=</span>df, df<span class="op">$</span>BIO<span class="op">~</span>.)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">summary</span>(reg_subsets)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># Todos los modelos de tamaño 7 o menos. Me quedo con los dos mejores.</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">reg_subsets =<span class="st"> </span><span class="kw">regsubsets</span>(<span class="dt">data=</span>df, </a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">                         df<span class="op">$</span>BIO<span class="op">~</span>., </a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">                         <span class="dt">nvmax=</span><span class="dv">7</span>, </a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">                         <span class="dt">nbest=</span><span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">                         <span class="dt">method=</span><span class="kw">c</span>(<span class="st">&quot;exhaustive&quot;</span>, <span class="st">&quot;backward&quot;</span>, <span class="st">&quot;forward&quot;</span>))</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="kw">summary</span>(reg_subsets)</a></code></pre></div>
 <pre><code>## Subset selection object
-## Call: regsubsets.formula(data = df, df$BIO ~ .)
+## Call: regsubsets.formula(data = df, df$BIO ~ ., nvmax = 7, nbest = 2, 
+##     method = c(&quot;exhaustive&quot;, &quot;backward&quot;, &quot;forward&quot;))
 ## 7 Variables  (and intercept)
 ##       Forced in Forced out
 ## K         FALSE      FALSE
@@ -1555,16 +1561,86 @@ Calcular medidas para todos los subconjuntos de predictores
 ## ZN        FALSE      FALSE
 ## LOC       FALSE      FALSE
 ## TYPE      FALSE      FALSE
-## 1 subsets of each size up to 7
+## 2 subsets of each size up to 7
 ## Selection Algorithm: exhaustive
 ##          K   SODIO PH  SAL ZN  LOC TYPE
 ## 1  ( 1 ) &quot; &quot; &quot; &quot;   &quot;*&quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; 
+## 1  ( 2 ) &quot; &quot; &quot; &quot;   &quot; &quot; &quot; &quot; &quot;*&quot; &quot; &quot; &quot; &quot; 
 ## 2  ( 1 ) &quot; &quot; &quot;*&quot;   &quot;*&quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; 
+## 2  ( 2 ) &quot;*&quot; &quot; &quot;   &quot;*&quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; 
 ## 3  ( 1 ) &quot; &quot; &quot;*&quot;   &quot;*&quot; &quot; &quot; &quot;*&quot; &quot; &quot; &quot; &quot; 
+## 3  ( 2 ) &quot; &quot; &quot;*&quot;   &quot;*&quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot;*&quot; 
 ## 4  ( 1 ) &quot;*&quot; &quot; &quot;   &quot;*&quot; &quot; &quot; &quot;*&quot; &quot;*&quot; &quot; &quot; 
+## 4  ( 2 ) &quot;*&quot; &quot; &quot;   &quot;*&quot; &quot;*&quot; &quot;*&quot; &quot; &quot; &quot; &quot; 
 ## 5  ( 1 ) &quot;*&quot; &quot; &quot;   &quot;*&quot; &quot;*&quot; &quot;*&quot; &quot;*&quot; &quot; &quot; 
+## 5  ( 2 ) &quot;*&quot; &quot; &quot;   &quot;*&quot; &quot; &quot; &quot;*&quot; &quot;*&quot; &quot;*&quot; 
 ## 6  ( 1 ) &quot;*&quot; &quot; &quot;   &quot;*&quot; &quot;*&quot; &quot;*&quot; &quot;*&quot; &quot;*&quot; 
+## 6  ( 2 ) &quot;*&quot; &quot;*&quot;   &quot;*&quot; &quot;*&quot; &quot;*&quot; &quot;*&quot; &quot; &quot; 
 ## 7  ( 1 ) &quot;*&quot; &quot;*&quot;   &quot;*&quot; &quot;*&quot; &quot;*&quot; &quot;*&quot; &quot;*&quot;</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">df_diagnosis =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">r2=</span><span class="kw">summary</span>(reg_subsets)<span class="op">$</span>rsq, <span class="dt">cp=</span><span class="kw">summary</span>(reg_subsets)<span class="op">$</span>cp)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">kable</span>(df_diagnosis)</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">r2</th>
+<th align="right">cp</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">0.5993642</td>
+<td align="right">6.130797</td>
+</tr>
+<tr class="even">
+<td align="right">0.3898915</td>
+<td align="right">30.773160</td>
+</tr>
+<tr class="odd">
+<td align="right">0.6584327</td>
+<td align="right">1.181976</td>
+</tr>
+<tr class="even">
+<td align="right">0.6475991</td>
+<td align="right">2.456435</td>
+</tr>
+<tr class="odd">
+<td align="right">0.6624506</td>
+<td align="right">2.709314</td>
+</tr>
+<tr class="even">
+<td align="right">0.6606614</td>
+<td align="right">2.919793</td>
+</tr>
+<tr class="odd">
+<td align="right">0.6778402</td>
+<td align="right">2.898873</td>
+</tr>
+<tr class="even">
+<td align="right">0.6748754</td>
+<td align="right">3.247658</td>
+</tr>
+<tr class="odd">
+<td align="right">0.6843245</td>
+<td align="right">4.136059</td>
+</tr>
+<tr class="even">
+<td align="right">0.6791860</td>
+<td align="right">4.740555</td>
+</tr>
+<tr class="odd">
+<td align="right">0.6850584</td>
+<td align="right">6.049729</td>
+</tr>
+<tr class="even">
+<td align="right">0.6844224</td>
+<td align="right">6.124547</td>
+</tr>
+<tr class="odd">
+<td align="right">0.6854811</td>
+<td align="right">8.000000</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="item-b" class="section level1">
 <h1>Item b</h1>
