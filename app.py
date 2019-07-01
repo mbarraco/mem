@@ -62,6 +62,31 @@ def practica_4_II_8():
     return render_template('practica_4_II_8.html')
 
 
+@app.route('/practica_5_5', methods=['GET'])
+def practica_5_5():
+    return render_template('practica_5_5.html')
+
+
+@app.route('/practica_5_6', methods=['GET'])
+def practica_5_6():
+    return render_template('practica_5_6.html')
+
+
+@app.route('/practica_5_7', methods=['GET'])
+def practica_5_7():
+    return render_template('practica_5_7.html')
+
+
+@app.route('/practica_5_8', methods=['GET'])
+def practica_5_8():
+    return render_template('practica_5_8.html')
+
+
+@app.route('/practica_5_9', methods=['GET'])
+def practica_5_9():
+    return render_template('practica_5_9.html')
+
+
 @app.route('/diagnostico', methods=['GET'])
 def diagnostico():
     return render_template('diagnostico.html')
