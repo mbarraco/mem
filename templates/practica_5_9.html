@@ -1528,15 +1528,43 @@ $(document).ready(function () {
 <div id="main">
 <div id="item-a" class="section level1">
 <h1>Item a</h1>
-<p>Calcule para los 31 subconjuntos basados en las 5 variables independientes: K, SODIO, PH, SAL y ZN:</p>
+<ul>
+<li><p>Calcule para los 31 subconjuntos basados en las 5 variables independientes: K, SODIO, PH, SAL y ZN:</p>
 <ul>
 <li><span class="math inline">\(C_p\)</span> de Mallows</li>
-<li><p><span class="math inline">\(R^2\)</span> y <span class="math inline">\(R^2_{adj}\)</span>.</p></li>
+<li><span class="math inline">\(R^2\)</span> y <span class="math inline">\(R^2_{adj}\)</span>.</li>
+</ul></li>
 <li>Elija los subconjuntos que serían los mejores candidatos según cada criterio.</li>
 <li>Compare las elecciones realizadas por los distintos métodos.</li>
 <li><p>Realice un gráfico de <span class="math inline">\(p vs. C_p\)</span> y observe cuáles son los subconjuntos con <span class="math inline">\(C_p\)</span> pequeño y cercanos a <span class="math inline">\(p\)</span></p></li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">df =<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;~/code/Modelo_Lineal_2019/ejercicios/Biomasa.xls&quot;</span>)</a></code></pre></div>
+<h4>
+Calcular medidas para todos los subconjuntos de predictores
+</h4>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">reg_subsets =<span class="st"> </span><span class="kw">regsubsets</span>(<span class="dt">data=</span>df, df<span class="op">$</span>BIO<span class="op">~</span>.)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">summary</span>(reg_subsets)</a></code></pre></div>
+<pre><code>## Subset selection object
+## Call: regsubsets.formula(data = df, df$BIO ~ .)
+## 7 Variables  (and intercept)
+##       Forced in Forced out
+## K         FALSE      FALSE
+## SODIO     FALSE      FALSE
+## PH        FALSE      FALSE
+## SAL       FALSE      FALSE
+## ZN        FALSE      FALSE
+## LOC       FALSE      FALSE
+## TYPE      FALSE      FALSE
+## 1 subsets of each size up to 7
+## Selection Algorithm: exhaustive
+##          K   SODIO PH  SAL ZN  LOC TYPE
+## 1  ( 1 ) &quot; &quot; &quot; &quot;   &quot;*&quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; 
+## 2  ( 1 ) &quot; &quot; &quot;*&quot;   &quot;*&quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; &quot; 
+## 3  ( 1 ) &quot; &quot; &quot;*&quot;   &quot;*&quot; &quot; &quot; &quot;*&quot; &quot; &quot; &quot; &quot; 
+## 4  ( 1 ) &quot;*&quot; &quot; &quot;   &quot;*&quot; &quot; &quot; &quot;*&quot; &quot;*&quot; &quot; &quot; 
+## 5  ( 1 ) &quot;*&quot; &quot; &quot;   &quot;*&quot; &quot;*&quot; &quot;*&quot; &quot;*&quot; &quot; &quot; 
+## 6  ( 1 ) &quot;*&quot; &quot; &quot;   &quot;*&quot; &quot;*&quot; &quot;*&quot; &quot;*&quot; &quot;*&quot; 
+## 7  ( 1 ) &quot;*&quot; &quot;*&quot;   &quot;*&quot; &quot;*&quot; &quot;*&quot; &quot;*&quot; &quot;*&quot;</code></pre>
 </div>
 <div id="item-b" class="section level1">
 <h1>Item b</h1>
